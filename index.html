@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gernhoefer.com</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url(cloudtile.png);
+            background-repeat: repeat;
+            font-family: sans-serif;
+        }
+
+        #clock {
+            width: 50%;
+            max-width: 800px;
+            aspect-ratio: 1/1;
+            border: 3px solid #ffffff;
+            background-size: 100%;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        #fivepmcountdown {
+            width: 50%;
+            max-width: 800px;
+            aspect-ratio: 1/1;
+            border: 3px dashed lightcoral;
+            background-size: 100%;
+            border-radius: 50%;
+            position: relative;
+            left: calc(25% - 5px);
+            top: calc(25% - 5px);
+        }
+
+        #countdowntext {
+            border: 1px solid red;
+            color: red;
+            height: 5%;
+            width: 20%;
+            position: relative;
+            height: 25%;
+            right: -52%;
+            display: none;
+        }
+
+        .hand {
+            position: absolute;
+            width: 5px;
+            left: 50%;
+            transform-origin: bottom center;
+            transition: transform 0.2s cubic-bezier(0.4, 2, 1, 1);
+        }
+
+        #hourHand {
+            /* these bottom two percentages MUST add up to 50 */
+            height: 25%;
+            top: 25%;
+            background-color: #a62cc1;
+        }
+
+        #fivepmcover {
+            width: 60%;
+            height: 70%;
+            position: absolute;
+            top: 15%;
+            left: calc(20% + 2.5px);
+            transform-origin: center center;
+            background: linear-gradient(90deg, rgba(89, 97, 255, 1) calc(50% - 2.5px), rgba(0, 0, 0, 0) calc(50% - 2.5px), rgba(207, 86, 86, 0) calc(50% - 2.5px));
+        }
+
+        #fivepmcover2 {
+            transform: rotate(-32deg);
+            width: 30%;
+            height: 70%;
+            position: absolute;
+            background-color: #5961ff;
+            top: 20%;
+            left: calc(20% + 2.5px);
+            transform-origin: center center;
+        }
+
+        #minuteHand {
+            height: 40%;
+            top: 10%;
+            background-color: #5e25bf;
+
+        }
+
+        #secondHand {
+            width: initial;
+            height: 100%;
+            top: -50%;
+            background-color: transparent;
+            /* this calc must always minus half the width of second.png */
+            left: calc(50% - 5%);
+        }
+
+        #fivepmline {
+            width: 3px;
+            height: 20px;
+            background-color: rgb(255, 255, 255);
+            position: absolute;
+            bottom: 6.5%;
+            right: 25.2%;
+            transform: rotate(-35deg);
+            color: white;
+            font-size: 100%;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+        <path id="curve" d="M10 80 Q 5 10 180 80" fill="transparent" stroke="white "/>
+        <text fill="white">
+            <textPath href="#curve" >
+                Check it out, this text is on a curved SVG line
+            </textPath>
+        </text>
+    </svg> -->
+    <div id="clock">
+        <div id="fivepmcountdown" style="display:none"></div>
+        <span id="countdowntext">5secs till 5pm</span>
+        <div id="fivepmcover" class="hand"></div>
+        <div id="fivepmcover2" class="hand"></div>
+        <div class="hand" id="hourHand"></div>
+        <div class="hand" id="minuteHand"></div>
+        <div id="fivepmline" style="display:none">
+            <span style="margin-left:10px;"><b>5PM</b></span>
+        </div>
+        <img src="second.png" class="hand" id="secondHand"></img>
+    </div>
+
+    <script>
+        // const now = new Date("2023-12-12T15:01:01");
+        const now = new Date();
+        hours = now.getHours() % 12;
+        minutes = now.getMinutes();
+        seconds = now.getSeconds();
+        hourDeg = (hours + minutes / 60) * 360 / 12;
+        minuteDeg = (minutes + seconds / 60) * 360 / 60;
+        secondDeg = seconds * 360 / 60;
+        fivepmcountdown = document.getElementById('fivepmcountdown');
+        if (now.getHours() >= 11 && now.getHours() < 17) {
+            fivepmcountdown.style.display = "block";
+        } else {
+            fivepmcountdown.style.display = "none";
+        }
+        fivepmline = document.getElementById('fivepmline');
+        if (now.getHours() >= 5 && now.getHours() < 24) {
+            fivepmline.style.display = "block";
+        } else {
+            fivepmline.style.display = "none";
+        }
+        function initiateClock() {
+            document.getElementById('hourHand').style.transform = `rotate(${hourDeg}deg)`;
+            // document.getElementById('countdowntext').style.transform = `rotate(${hourDeg - 80}deg)`;
+            document.getElementById('fivepmcover').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('minuteHand').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('secondHand').style.transform = `rotate(${secondDeg}deg)`;
+        }
+        function updateClock() {
+            const now = new Date();
+            // const now = new Date("2023-12-12T15:01:01");
+            hours = now.getHours();
+            if (hours >= 11 && hours < 17) {
+                fivepmcountdown.style.display = "block";
+                // document.getElementById('fivepmcountdown').innerHTML = hours;
+            } else {
+                fivepmcountdown.style.display = "none";
+            }
+            fivepmline = document.getElementById('fivepmline');
+            if (now.getHours() >= 5 && now.getHours() < 24) {
+                fivepmline.style.display = "block";
+            } else {
+                fivepmline.style.display = "none";
+            }
+            minutes = now.getMinutes();
+            seconds = now.getSeconds();
+
+            hourDeg += 0.0083333333;
+            minuteDeg += 0.1;
+            secondDeg += 6
+            document.getElementById('hourHand').style.transform = `rotate(${hourDeg}deg)`;
+            // document.getElementById('countdowntext').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('fivepmcover').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('minuteHand').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('secondHand').style.transform = `rotate(${secondDeg}deg)`;
+        }
+        initiateClock(); // Initial update
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+
+</html>
