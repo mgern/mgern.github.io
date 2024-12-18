@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LastFM Wrapped</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <h1>Lastfm Wrapped</h1>
+  <p>Spotify wrapped style for last fm.
+    Only works for the last 12 months, 6 months or 1month or 7days, sadly the last fm API doesn't allow custom 'from'
+    and 'to' timestamps for refined filtering.
+  </p>
+  <label for="username">Last.fm Username:</label>
+  <input type="text" id="username" placeholder="Enter Last.fm username">
+  
+  <button onclick="getUserTopArtists(),getUserTopTracks(),getTopGenre(),getMinutesListened(), getTopArtistImage() ">Get lastFM
+    Wrapped</button>
+  
+  
+
+  <br><br>
+  <div id="wrappedcontainer">
+    <div id="artistimage" style="display:none">Insert top artist image here... </div>
+    <div class="twocolumn">
+      <div id="artists"></div>
+      <div id="tracks"></div>
+    </div>
+    <div class="twocolumn">
+      <div id="minuteslistened"></div>
+      <div id="genre"></div>
+    </div>
+  </div>
+
+  <!-- fake data below -->
+
+
+
+
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

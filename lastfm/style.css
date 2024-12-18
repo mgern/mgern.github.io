@@ -1,0 +1,145 @@
+@font-face {
+    font-family: 'Product-Sans light';
+    src: url('ProductSans-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Product-Sans medium';
+    src: url('ProductSans-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Use the font */
+body {
+    font-family: "Product-Sans medium", Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    min-height: 100vh;
+    background: #00C2FF
+}
+
+/* 
+#artistimage {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+} */
+
+
+h3 {
+    font-family: 'Product-Sans light';
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+#wrappedcontainer {
+    width: 600px;
+}
+
+.twocolumn {
+    display: flex;
+    width: 100%;
+}
+
+#artists,
+#tracks,
+#minuteslistened,
+#genre {
+    width: 50%;
+}
+
+
+#artists li span,
+#tracks li span {
+    display: block;
+    padding: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+ol {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 0px;
+    padding-left: 16px;
+    list-style-type: decimal;
+    /* 1, 2, 3, 4 */
+}
+
+ol li::marker {
+    content: counter(list-item) " ";
+    /* Replace the default "1." with "1 " */
+}
+
+
+#minuteslistened {
+    margin-top: 40px 0;
+}
+
+#minuteslistened p {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+#genre h3 {
+    margin-bottom: 10px;
+}
+
+#genre {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.spotify-logo {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapped-url {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+}
+
+/* Numbering for top 5 lists */
+#artists p,
+#tracks p {
+    position: relative;
+    padding-left: 40px;
+}
+
+#artists p:before,
+#tracks p:before {
+    counter-increment: section;
+    content: counter(section);
+    position: absolute;
+    left: 0;
+    font-size: 1.4rem;
+    font-weight: 900;
+}
+
+#artists,
+#tracks {
+    counter-reset: section;
+}
