@@ -116,11 +116,11 @@ class DigitalDisplay {
                 {active:1, hour:'up', minute:'right'}, {active:1, hour:'left', minute:'right'}, {active:1, hour:'left', minute:'up'}
             ],
             1: [
+                {active:0}, {active:1, hour:'down', minute:'down'}, {active:0},
                 {active:0}, {active:1, hour:'up', minute:'down'}, {active:0},
                 {active:0}, {active:1, hour:'up', minute:'down'}, {active:0},
                 {active:0}, {active:1, hour:'up', minute:'down'}, {active:0},
-                {active:0}, {active:1, hour:'up', minute:'down'}, {active:0},
-                {active:0}, {active:1, hour:'up', minute:'down'}, {active:0}
+                {active:0}, {active:1, hour:'up', minute:'up'}, {active:0}
             ],
             2: [
                 {active:1, hour:'right', minute:'right'}, {active:1, hour:'right', minute:'right'}, {active:1, hour:'down', minute:'left'},
